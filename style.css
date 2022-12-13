@@ -16,23 +16,19 @@ h1{
 
 a:link {
   color: rgb(0,192,255);
-  background-color: transparent;
   text-decoration: none;
 }
 a:visited {
   color: rgb(32,160,255);
-  background-color: transparent;
   text-decoration: none;
 }
 
 a:hover {
   color: red;
-  background-color: transparent;
   text-decoration: underline;
 }
 
 a:active {
   color: rgb(0,192,255);
-  background-color: transparent;
   text-decoration: underline;
 }
