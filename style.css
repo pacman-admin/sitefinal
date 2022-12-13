@@ -12,7 +12,9 @@ h1{
   margin-left: 0px;
 }
 
-/* custom link colours*/
+
+/*custom link colours*/
+
 a:link {
   color: rgb(0,192,255);
   text-decoration: none;
