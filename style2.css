@@ -2,4 +2,5 @@ html,body{
 	margin:0;
 	overflow:hidden;
   color:0;
+  max-height: 100%;
 }
