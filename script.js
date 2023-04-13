@@ -36,7 +36,7 @@ var fruitSound = "https://freepacman.org/app/style/audio/fruit.mp3";
 //var extra_life = "https://freepacman.org/app/style/audio/extra_life.mp3";
 var pauseSound = "https://freepacman.org/app/style/audio/pause.mp3";
 
-let CELL = 32 //cell size defaults to 16
+let CELL = 16 //cell size defaults to 16
 let anchor = 0 //anchor for top left of game board (used later)
 let debug = false //show debug stuffs
 let input = [] //list of keys pressed
