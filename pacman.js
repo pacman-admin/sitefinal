@@ -126,13 +126,8 @@ class player{ //defining the player
       dotsToRamp = 10
       if(lives < 1){
         console.log("GAME OVER");
-        if(this.deadTicks < 360){
-          background(0);
-          if(frameCount%64 < 32){
-            fill(255,0,0);
-            text("GAME OVER", width/2, height/2)
-          }
-        }
+        gameState = "gameover";
+        
       }else{
         reset(lives < 1) //reset (only full reset if 0 lives left)
 			  intro = true //we are in the intro again

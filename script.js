@@ -71,7 +71,7 @@ let fright = 0 //how long a power pellet has left
 let frightScore = 200 //score for eating a ghost
 let texts = [] // list of display text instances
 let score = 0 //score of the player
-let gameState = "menu"
+let gameState = "game"
 let livesEnabled = true
 let dotRamp = true
 let dotScore = 10
@@ -149,9 +149,9 @@ window.onkeyup = ({key}) => {// on key up
 
 window.onresize = () => { //on resize
 	resizeCanvas(window.innerWidth, window.innerHeight) //resize the canvas to window size
-	CELL = window.innerHeight/23//adjust the cell size
+	CELL = window.innerHeight/28//adjust the cell size
   
-  CELL = round(CELL/4)*4;
+  CELL = round(CELL/8)*8;
 	anchor = ((window.innerWidth/CELL)/2) - (14) //re-anchor the game
 	for (let i of dots){
 		i.redoDisp()
@@ -377,21 +377,25 @@ function setup(){ //setup the game
 
 function draw(){
   frameCount++;
-  if (!loaded && !failLoad){ 
+  if (loaded && !failLoad){ 
     background(255);
     text("Load sucess!", width/2, height/2);
-    return
   }else if (failLoad){
     useSprites = false
     console.log("Failed to load sprites.")
   }
 	if (gameState == "game"){
 		game();
-    
+	}
+  if (gameState == "gameover"){
+		background(0);
+    fill(255,0,0)
+    text("GAME OVER",width/2,height/2);
 	}
 	if (gameState == "menu"){
 		gameState = "game";
 	}
+  
 }
 function showAll(){
   
