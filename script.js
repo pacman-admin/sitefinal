@@ -58,7 +58,7 @@ let directionVectors = [] //direction vectors (used in setup function)
 let ticks = 0 //game ticks passed
 var dotWave = false; //wavey dots can cause lag so its disabled by default
 var dotWave2 = false
-let lives = 3 //pacmans lives
+let lives = 2 //pacman's lives
 let p //the player variable
 let stopped = true //is the game stopped?
 let paused = false //is the game paused? (by the player or an unfocus event)
@@ -233,7 +233,7 @@ function reset(full=false){ //reset the game
       dotScore = 10
 		  level = startLevel //reset level
       gameSpeed = startSpeed
-      lives = 3 //reset lives
+      lives = 2 //reset lives
       score = 0
     }
 	}
@@ -391,6 +391,15 @@ function draw(){
 		background(0);
     fill(255,0,0)
     text("GAME OVER",width/2,height/2);
+    push();
+    textSize(20);
+    text("Click the screen to play again",width/2,height/2+40);
+    pop();
+    if (mouseIsPressed) {
+      gameState = "game";
+      reset(true)
+      gameState = "game";
+    }
 	}
 	if (gameState == "menu"){
 		gameState = "game";

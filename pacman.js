@@ -124,12 +124,12 @@ class player{ //defining the player
       if (speedRamp > 0){gameSpeed = max(round(gameSpeed - speedIncreaseAmount,3),0.1)}
 			dotScore = max(dotScore - 10, 10)
       dotsToRamp = 10
-      if(lives < 1){
+      if(lives < 0){
         console.log("GAME OVER");
         gameState = "gameover";
         
       }else{
-        reset(lives < 1) //reset (only full reset if 0 lives left)
+        reset() //reset (only full reset if 0 lives left)
 			  intro = true //we are in the intro again
       }
       
