@@ -17,7 +17,7 @@ let gameSpeed = 0.09//                 |
 let speedIncreaseAmount = 0.01//       |
 //how fast it increases                |
 let useExternalStorage={pacman: true,//|
-  inky: true, blinky: true};//       |
+  inky: true, blinky: true};//         |
 //_____________________________________|
 
 var dotMax = 0;
@@ -35,7 +35,6 @@ var dotSound2 = "https://freepacman.org/app/style/audio/dot_2.mp3";
 var fruitSound = "https://freepacman.org/app/style/audio/fruit.mp3";
 //var extra_life = "https://freepacman.org/app/style/audio/extra_life.mp3";
 var pauseSound = "https://freepacman.org/app/style/audio/pause.mp3";
-
 let CELL = 16 //cell size defaults to 16
 let anchor = 0 //anchor for top left of game board (used later)
 let debug = false //show debug stuffs
@@ -71,7 +70,7 @@ let fright = 0 //how long a power pellet has left
 let frightScore = 200 //score for eating a ghost
 let texts = [] // list of display text instances
 let score = 0 //score of the player
-let gameState = "game"
+let gameState = "menu"
 let livesEnabled = true
 let dotRamp = true
 let dotScore = 10
@@ -79,15 +78,12 @@ let dotsToRamp = 10
 let startLevel = 1
 let speedRamp = 0
 let rampValues = ["off", "ghost", "level"] //off = no ramp, ghost = ramp up on ghost eaten, level = ramp up on level progression
-
-
 let EI = useExternalStorage.inky;
 // use external inky sprites
 let EB = useExternalStorage.blinky;
 // use external blinky sprites
 let EP = useExternalStorage.pacman;
 // use external pacman sprites
-
 let sprites
 let FPS = 60;
 let useSprites = true
@@ -100,6 +96,107 @@ let failLoad = false
 let pTicks = 0;
 let move = true
 let dieEndImg;
+
+
+
+
+function preload(){ 
+  //preload the custom pacman font :)
+	font = loadFont("font.ttf")
+  //images in order of RIGHT, UP, LEFT, DOWN
+  
+    
+    sprites = {
+      "blinky":[
+        loadImage(`/ghost/blinky/right.svg`, ILS, ILE), 
+        loadImage(`/ghost/blinky/right2.svg`, ILS, ILE), 
+        loadImage(`/ghost/blinky/up.svg`, ILS, ILE), 
+        loadImage(`/ghost/blinky/up2.svg`, ILS, ILE), 
+        loadImage(`/ghost/blinky/left.svg`, ILS, ILE), 
+        loadImage(`/ghost/blinky/left2.svg`, ILS, ILE), 
+        loadImage(`/ghost/blinky/down.svg`, ILS, ILE), 
+        loadImage(`/ghost/blinky/down2.svg`, ILS, ILE) 
+      ], 
+      "pinky":[
+        loadImage(`${imgBase}ghost/pinky/right.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/pinky/right2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/pinky/up.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/pinky/up2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/pinky/left.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/pinky/left2.svg`, ILS, ILE),   
+        loadImage(`${imgBase}ghost/pinky/down.svg`, ILS, ILE),     
+        loadImage(`${imgBase}ghost/pinky/down2.svg`, ILS, ILE)
+      ], 
+      "inky":[
+        loadImage(`${imgBase}ghost/inky/right.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/inky/right2.svg`, ILS, ILE), 
+        loadImage(`/ghost/inky/up.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/inky/up2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/inky/left.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/inky/left2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/inky/down.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/inky/down2.svg`, ILS, ILE), 
+      ], 
+      "clyde":[
+        loadImage(`${imgBase}ghost/clyde/right.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/clyde/right2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/clyde/up.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/clyde/up2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/clyde/left.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/clyde/left2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/clyde/down.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/clyde/down2.svg`, ILS, ILE)
+      ], 
+      "fright":[
+        loadImage("/ghost/fright/blue.svg", ILS, ILE), 
+        loadImage("/ghost/fright/blue2.svg", ILS, ILE), 
+        loadImage("/ghost/fright/white.svg", ILS, ILE), 
+        loadImage("/ghost/fright/white2.svg", ILS, ILE)
+      ], 
+      "eyes":[
+        loadImage(`/ghost/eyes/right.svg`, ILS, ILE), 
+        loadImage(`/ghost/eyes/up.svg`, ILS, ILE), 
+        loadImage(`/ghost/eyes/left.svg`, ILS, ILE), 
+        loadImage(`/ghost/eyes/down.svg`, ILS, ILE) 
+      ]
+    }
+    loadingPacSprites = true;
+    dieEndImg = loadImage(`${EP ? imgBase : "/"}pacman/death/10.png`, ILS, ILE);
+    if(usePacmanSprites){
+      setTimeout(() => { //load seperately to avoid 429 too many requests
+        sprites.pacwalk = [
+          loadImage(`${imgBase}sprites/pacman/normal/0.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/00.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/01.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/10.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/11.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/20.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/21.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/30.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/normal/31.png`, ILS, ILE)
+        ]
+        sprites.pacdeath = [
+          loadImage(`${EP ? imgBase : "/"}pacman/death/0.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/1.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/2.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/3.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/4.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/5.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/6.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/7.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/8.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/9.png`, ILS, ILE), 
+          loadImage(`${EP ? imgBase : "/"}pacman/death/10.png`, ILS, ILE)
+        ]
+        loaded = true
+      }, 1000)
+    }else{
+      loaded = true;
+    }
+  
+  }
+
+
 function toBool(string){
   return string == "true" ? true : false
 }
@@ -258,106 +355,13 @@ function ILE(event){
 function ILS(img){
   console.log("Image loaded sucessfully");
 }
-function preload(){ 
-  //preload the custom pacman font :)
-	font = loadFont("font.ttf")
-  //images in order of RIGHT, UP, LEFT, DOWN
-  
-    
-    sprites = {
-      "blinky":[
-        loadImage(`/ghost/blinky/right.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/right2.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/up.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/up2.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/left.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/left2.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/down.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/down2.svg`, ILS, ILE) 
-      ], 
-      "pinky":[
-        loadImage(`${imgBase}ghost/pinky/right.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/pinky/right2.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/pinky/up.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/pinky/up2.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/pinky/left.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/pinky/left2.svg`, ILS, ILE),   
-        loadImage(`${imgBase}ghost/pinky/down.svg`, ILS, ILE),     
-        loadImage(`${imgBase}ghost/pinky/down2.svg`, ILS, ILE)
-      ], 
-      "inky":[
-        loadImage(`${imgBase}ghost/inky/right.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/inky/right2.svg`, ILS, ILE), 
-        loadImage(`/ghost/inky/up.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/inky/up2.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/inky/left.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/inky/left2.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/inky/down.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/inky/down2.svg`, ILS, ILE), 
-      ], 
-      "clyde":[
-        loadImage(`${imgBase}ghost/clyde/right.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/clyde/right2.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/clyde/up.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/clyde/up2.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/clyde/left.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/clyde/left2.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/clyde/down.svg`, ILS, ILE), 
-        loadImage(`${imgBase}ghost/clyde/down2.svg`, ILS, ILE)
-      ], 
-      "fright":[
-        loadImage("/ghost/fright/blue.svg", ILS, ILE), 
-        loadImage("/ghost/fright/blue2.svg", ILS, ILE), 
-        loadImage("/ghost/fright/white.svg", ILS, ILE), 
-        loadImage("/ghost/fright/white2.svg", ILS, ILE)
-      ], 
-      "eyes":[
-        loadImage(`/ghost/eyes/right.svg`, ILS, ILE), 
-        loadImage(`/ghost/eyes/up.svg`, ILS, ILE), 
-        loadImage(`/ghost/eyes/left.svg`, ILS, ILE), 
-        loadImage(`/ghost/eyes/down.svg`, ILS, ILE) 
-      ]
-    }
-    loadingPacSprites = true;
-    dieEndImg = loadImage(`${EP ? imgBase : "/"}pacman/death/10.png`, ILS, ILE);
-    if(usePacmanSprites){
-      setTimeout(() => { //load seperately to avoid 429 too many requests
-        sprites.pacwalk = [
-          loadImage(`${imgBase}sprites/pacman/normal/0.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/00.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/01.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/10.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/11.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/20.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/21.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/30.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/normal/31.png`, ILS, ILE)
-        ]
-        sprites.pacdeath = [
-          loadImage(`${EP ? imgBase : "/"}pacman/death/0.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/1.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/2.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/3.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/4.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/5.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/6.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/7.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/8.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/9.png`, ILS, ILE), 
-          loadImage(`${EP ? imgBase : "/"}pacman/death/10.png`, ILS, ILE)
-        ]
-        loaded = true
-      }, 1000)
-    }else{
-      loaded = true;
-    }
-  
-  }
+
 
 
 function setup(){ //setup the game
   background(255);
   fill(0);
+  frameRate(999999999)
   text("Loading...", 200, 200);
 	resizeCanvas(window.innerWidth, window.innerHeight) //resize canvas to window size
 	strokeWeight(1) //set line weight for text mainly
@@ -385,7 +389,7 @@ function draw(){
     console.log("Failed to load sprites.")
   }
 	if (gameState == "game"){
-		game();
+		if(true){game();}
 	}
   if (gameState == "gameover"){
 		background(0);
@@ -402,7 +406,7 @@ function draw(){
     }
 	}
 	if (gameState == "menu"){
-		gameState = "game";
+    drawMenuButtons()
 	}
   
 }

@@ -41,6 +41,7 @@ drawMenuButtons = () => {
 	let width = window.innerWidth
 	let height = window.innerHeight
 	background(0)
+  //text("Use arrow keys to select options", width/2, height/2+400);
 	textSize(CELL)
 	changeCooldown--
 	let len = Object.keys(buttons[menuIndex]).length
