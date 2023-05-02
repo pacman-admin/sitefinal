@@ -11,7 +11,7 @@ space + backspace: back to menu
 let usePacmanSprites = false;//        |
 let ghostsRamp = 4 //amount of ghosts  |
 //needing to be eaten to speed ramp up |
-let gameSpeed = 0.09//                 |
+let startSpeed = 0.08//                 |
 //speed at which the game runs         |
 //(not framerate)                      |
 let speedIncreaseAmount = 0.01//       |
@@ -39,12 +39,14 @@ let CELL = 16 //cell size defaults to 16
 let anchor = 0 //anchor for top left of game board (used later)
 let debug = false //show debug stuffs
 let input = [] //list of keys pressed
+let dotFlipFlop = false;
 let directions = { //controls
 	"d":0, 
 	"w":1, 
 	"a":2, 
 	"s":3
 }
+let gameSpeed = 0.1
 let frameCount = 0;
 let startMillis = 0;
 let arrowDirections = { //controls
@@ -88,7 +90,7 @@ let sprites
 let FPS = 60;
 let useSprites = true
 let loaded = true
-let startSpeed = 0.1
+
 let fruitSpawn = [0, 0]
 let penLoc = [0, 0] //ghost pen location
 let useModulo = true
@@ -337,7 +339,7 @@ function reset(full=false){ //reset the game
 	fright = 0 //reset fright ticks
 	setupMap(full) //reset map
   if (full){
-    play("https://freepacman.org/app/style/audio/game_start.mp3");
+    //play("https://freepacman.org/app/style/audio/game_start.mp3");
   }
 }
 function ILE(event){
@@ -367,7 +369,7 @@ function setup(){ //setup the game
 	strokeWeight(1) //set line weight for text mainly
 	window.onresize() //call window resize event to set up cell size and anchor
 	directionVectors = [createVector(1, 0), createVector(0, -1), createVector(-1, 0), createVector(0, 1)] //set direction vectors
-	reset(true) //reset the map for the first time
+	reset(true)//reset the map for the first time
 	angleMode(DEGREES) //set angle mode
 	textFont(font) //use the pacman font
 	textAlign(CENTER, CENTER) //align text centered
@@ -402,6 +404,7 @@ function draw(){
     if (mouseIsPressed) {
       gameState = "game";
       reset(true)
+      play("https://freepacman.org/app/style/audio/game_start.mp3");
       gameState = "game";
     }
 	}

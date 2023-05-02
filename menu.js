@@ -5,7 +5,7 @@ let selectedIndex = 0
 
 buttons = {
 	"main":{
-		"play": () => {gameState = "game"; lives = 0; reset(true); /*startMillis = millis();*/},
+		"play": () => {gameState = "game"; lives = 0; reset(true); play("https://freepacman.org/app/style/audio/game_start.mp3");},
 		"options": () => {menuIndex = "options";selectedIndex = 0}
 	},
 	"options":{

@@ -73,12 +73,12 @@ class player{ //defining the player
 				}
 				dots.splice(dots.indexOf(i),1) //remove eaten dot
 				score += dotScore //add to score
-        if(score%2 == 0){
+        if(dotFlipFlop){
           play(dotSound1);
-          //text("Balony!", 200, 200)
         }else{
           play(dotSound2);
         }
+        dotFlipFlop = !dotFlipFlop;
 				dotsToRamp--
 				if (dotsToRamp <= 0 && dotScore < 100){
 					dotsToRamp = 10
