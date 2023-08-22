@@ -1,1 +1,5 @@
-https://www.getpacman.gq https://www.getpacman.gq/downloads https://www.getpacman.gq/online https://test.getpacman.gq/ https://test.getpacman.gq/wixforfree
+https://www.getpacman.gq
+https://www.getpacman.gq/downloads
+https://www.getpacman.gq/online 
+https://test.getpacman.gq/ 
+https://test.getpacman.gq/wixforfree

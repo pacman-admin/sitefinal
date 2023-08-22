@@ -1,1 +1,4 @@
-User-agent: * Allow: / Sitemap: https://www.getpacman.gq/sitemap.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.getpacman.gq/sitemap.txt
