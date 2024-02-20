@@ -24,9 +24,9 @@ var dotMax = 0;
 let loadingPacSprites = false;
 var imgTestY = 0
 var uselessImgs = [];
-const imgBase = 'https://storage.getpacman.gq/';
+const imgBase = 'https://storage.langdonstaab.ca/';
 //For some reason, replit return an error if all sprites are acessed from it.
-//To fix this, many sprites are acessed from storage.getpacman.gq instead.
+//To fix this, many sprites are acessed from storage.langdonstaab.ca instead.
 var pause_beat = "https://freepacman.org/app/style/audio/pause_beat.mp3"
 var dieS = "https://freepacman.org/app/style/audio/death.mp3";
 //var startSound = "https://freepacman.org/app/style/audio/game_start.mp3";
