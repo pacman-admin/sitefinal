@@ -191,7 +191,7 @@ function preload(){
           loadImage(`${EP ? imgBase : "/"}pacman/death/10.png`, ILS, ILE)
         ]
         loaded = true
-      }, 1000)
+      }, 1000) 
     }else{
       loaded = true;
     }
