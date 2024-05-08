@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width">
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link rel="icon" href="/favicon.ico">
+  <script src="copyScript.js"></script>
 </head>
 
 <body>
@@ -34,9 +35,20 @@
         href="https://raw.githubusercontent.com/pacman-admin/Big-storage/main/Pac-Man%2012%20inst.dmg">Download Pac-Man
         for macOS</a> See the downloads page for special instructions.</p>
     <p><a href="https://raw.githubusercontent.com/pacman-admin/Linux-Downloads/master/pac-man_12_amd64.deb">Download
-        Pac-Man for
-        Linux(Ubuntu, Mint, Debian and Debian-Based distros)</a></p>
+        Pac-Man for Linux(Ubuntu, Mint, Debian and Debian-Based distros)</a></p>
+
+    <!-- The text field -->
+    <input type="text"
+      value="wget https://raw.githubusercontent.com/pacman-admin/Linux-Downloads/master/pac-man_12_amd64.deb && sudo apt install \\\&quot;$PWD/pac-man_12_amd64.deb\\\&quot;"
+      id="myInput" size=64>
+
+    <!-- The button used to copy the text -->
+    <button onclick="myFunction()">Copy text</button>
+    <br>
+    <p>If you have any constructive comments, ideas, or need help installing Pac-Man; please email me at
+      support@langdonstaab.ca.</p>
     <p><a href="https://langdonstaab.ca/web">Play Pac-Man Online(BETA)</a></p>
+
     <p style="color:#FB0800">Pac-Man Online does not recieve bug fixes and has fewer features than the installed
       version. In addition, it uses a lot more CPU.</p>
     <p><a href="https://icedrive.net/s/F31SCRuS6jBtwAFG4D4FDVQVtiGF">Download Stampgame for Windows</a></p>
@@ -52,17 +64,16 @@
         href="https://replit.com/@SeamusDonahue/pacman-rewrite?v=1">@SeamusDonahue</a>.</p>
     <p>Pac-Man was coded almost entirely by Langdon Staab. Peter Petrone helped with the web version's sound and
       with other things. Snake was adapted from source code by Ian151 (ChromeWing). Why not download <a
-        href="https://stampgame.ml">StampGame</a>, <a href="https://bit.ly/pythonrobo">Robo</a>, and/or <a
-        href="https://getsnake.tk">Snake</a></p>
-    <p>Thank you to <a href="https://proce55ing.net">The Processing Foundation</a>, <ahref="https: //freepacman.org">
+        href="https://stampgame.ml">StampGame</a> and/or <a href="https://bit.ly/pythonrobo">Robo</a>
+    <p>Thank you to <a href="https://proce55ing.net">The Processing Foundation</a>, <a href="https://freepacman.org">
         Freepacman.org</a>, <a href="https://jrsoftware.org/isdl.php">Inno Setup compiler</a>, and <a
-          href="http://convertico.com">convertico.com</a>.</p>
+        href="http://convertico.com">convertico.com</a>.</p>
     <p>Pac-Man icon credit <a
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pacman.svg/1200px-Pacman.svg.png"> Wikimedia
         Commons </a></p>
     <p>If you have any constructive comments, ideas, or need help installing Pac-Man; please email me at
       support@langdonstaab.ca.</p>
-    <p>Langdon Staab is in no way liable for any damages or issues caused by Pac-Man, Snake, or StampGame.</p>
+    <p>Langdon Staab is in no way liable for any damages or issues caused by Pac-Man, RoBo, or StampGame.</p>
     <br><br><br>
     <p>Oracle, Java, MySQL, and NetSuite are registered trademarks of Oracle and/or its affiliates. Other names may be
       trademarks of their respective owners.</p>
