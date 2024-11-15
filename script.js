@@ -110,14 +110,14 @@ function preload(){
     
     sprites = {
       "blinky":[
-        loadImage(`/ghost/blinky/right.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/right2.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/up.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/up2.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/left.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/left2.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/down.svg`, ILS, ILE), 
-        loadImage(`/ghost/blinky/down2.svg`, ILS, ILE) 
+        loadImage(`${imgBase}ghost/blinky/right.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/blinky/right2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/blinky/up.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/blinky/up2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/blinky/left.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/blinky/left2.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/blinky/down.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/blinky/down2.svg`, ILS, ILE) 
       ], 
       "pinky":[
         loadImage(`${imgBase}ghost/pinky/right.svg`, ILS, ILE), 
@@ -132,7 +132,7 @@ function preload(){
       "inky":[
         loadImage(`${imgBase}ghost/inky/right.svg`, ILS, ILE), 
         loadImage(`${imgBase}ghost/inky/right2.svg`, ILS, ILE), 
-        loadImage(`/ghost/inky/up.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/inky/up.svg`, ILS, ILE), 
         loadImage(`${imgBase}ghost/inky/up2.svg`, ILS, ILE), 
         loadImage(`${imgBase}ghost/inky/left.svg`, ILS, ILE), 
         loadImage(`${imgBase}ghost/inky/left2.svg`, ILS, ILE), 
