@@ -156,10 +156,10 @@ function preload(){
         loadImage("/ghost/fright/white2.svg", ILS, ILE)
       ], 
       "eyes":[
-        loadImage(`/ghost/eyes/right.svg`, ILS, ILE), 
-        loadImage(`/ghost/eyes/up.svg`, ILS, ILE), 
-        loadImage(`/ghost/eyes/left.svg`, ILS, ILE), 
-        loadImage(`/ghost/eyes/down.svg`, ILS, ILE) 
+        loadImage(`${imgBase}ghost/eyes/right.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/eyes/up.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/eyes/left.svg`, ILS, ILE), 
+        loadImage(`${imgBase}ghost/eyes/down.svg`, ILS, ILE) 
       ]
     }
     loadingPacSprites = true;
